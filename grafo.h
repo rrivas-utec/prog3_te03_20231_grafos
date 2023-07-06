@@ -22,16 +22,17 @@ class grafo {
     // Lista de Vertices
     unordered_map<KeyType, ItemType> vertices;
     // Lista de Adyacentes
-    vector<forward_list<AdjacentType>> adjacents;
+    vector<forward_list<AdjacentType>> adjacent_vertices;
 public:
     grafo() = default;
     // Adicionar Vertices
     bool add_vertex(pair<KeyType, ValueType> node) {
         // Si no lo encuentra lo adicional
-        if (vertices.find(node.first) == end(vertices)) {
-            auto item = pair{size(adjacents), node.second};
-            vertices.emplace(node.first, item);
-            adjacents.emplace_back();
+        auto [key, value] = node;
+        if (vertices.find(key) == end(vertices)) { // Sino existe
+            auto item = pair{size(adjacent_vertices), value};
+            vertices.emplace(key, item);
+            adjacent_vertices.emplace_back();
             return true;
         }
         return false;
@@ -40,8 +41,8 @@ public:
     void add_edge(KeyType kv1, KeyType kv2, WeightType weight) {
         auto vx1 = vertices[kv1].first;
         auto vx2 = vertices[kv2].first;
-        adjacents[vx1].emplace_front(vx2, weight);
-        adjacents[vx2].emplace_front(vx1, weight);
+        adjacent_vertices[vx1].emplace_front(vx2, weight);
+        adjacent_vertices[vx2].emplace_front(vx1, weight);
     }
 };
 
