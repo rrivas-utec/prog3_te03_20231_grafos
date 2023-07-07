@@ -1,7 +1,7 @@
 #include <iostream>
 #include "grafo.h"
 
-int main() {
+void ejemplo_1() {
     grafo<string, int, int> g;
     // Vertices
     g.add_vertex({"A", 1});
@@ -24,6 +24,15 @@ int main() {
         cout << key << " ";
     });
     cout << endl;
+}
+void ejemplo_2() {
+    grafo<string, int, int> g;
+    g.add_vertex("A", 1);
+    g.add_vertex("B", 1);
+    g.add_vertex("C", 1);
+
+}
+int main() {
 
     return 0;
 }
